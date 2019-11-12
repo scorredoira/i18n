@@ -20,7 +20,7 @@ const (
 	IntPattern          = "i"
 )
 
-var Default Culture
+var DefaultCulture Culture
 var cultures map[string]Culture
 
 type Culture struct {
@@ -141,7 +141,7 @@ func init() {
 		},
 	}
 
-	Default = cultures["es-ES"]
+	DefaultCulture = cultures["es-ES"]
 }
 
 // Mon Jan 2 15:04:05 -0700 MST 2006
@@ -175,9 +175,6 @@ func ValidCulture(name string) bool {
 }
 
 func GetCulture(name string) (Culture, error) {
-	if name == "" {
-		name = "en-US"
-	}
 	c, ok := cultures[name]
 	if !ok {
 		return Culture{}, fmt.Errorf("Invalid culture: %s", name)
